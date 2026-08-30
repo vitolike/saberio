@@ -9,6 +9,9 @@
     "lint": "oxlint",
     "format": "oxfmt"
   },
+  "allowScripts": {
+    "sharp": true
+  },
   "dependencies": {
     "next": "^15.2.0",
     "react": "^19.0.0",
