@@ -274,13 +274,34 @@ export default function Home() {
     alert('Obrigado! Redirecionando para o WhatsApp da equipe Saberio...');
   };
 
+  // Newsletter state
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSent, setNewsletterSent] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail) {
+      setNewsletterSent(true);
+      setTimeout(() => setNewsletterSent(false), 5000);
+      setNewsletterEmail('');
+    }
+  };
+
   // Calculations for ROI Calculator
   const hoursSavedPerWeek = Math.round(studentCount * 0.12);
   const paperSavedPerYear = Math.round(studentCount * 38);
   const estimatedSavings = Math.round(studentCount * 45);
 
   return (
-    <main className="min-h-screen bg-[#fffdf9] text-[#15294a]">
+    <main className="min-h-screen bg-[#fffdf9] text-[#15294a] relative overflow-hidden">
+      {/* Background Animated Floating Bubbles */}
+      <div className="bubbles-background" aria-hidden="true">
+        <div className="floating-bubble" style={{ width: '120px', height: '120px', background: 'radial-gradient(circle, rgba(56,182,255,0.2) 0%, rgba(56,182,255,0) 70%)', left: '10%', animationDuration: '18s', animationDelay: '0s' }} />
+        <div className="floating-bubble" style={{ width: '80px', height: '80px', background: 'radial-gradient(circle, rgba(255,183,3,0.2) 0%, rgba(255,183,3,0) 70%)', left: '85%', animationDuration: '14s', animationDelay: '3s' }} />
+        <div className="floating-bubble" style={{ width: '150px', height: '150px', background: 'radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(16,185,129,0) 70%)', left: '45%', animationDuration: '22s', animationDelay: '7s' }} />
+        <div className="floating-bubble" style={{ width: '90px', height: '90px', background: 'radial-gradient(circle, rgba(255,94,94,0.18) 0%, rgba(255,94,94,0) 70%)', left: '70%', animationDuration: '16s', animationDelay: '2s' }} />
+        <div className="floating-bubble" style={{ width: '110px', height: '110px', background: 'radial-gradient(circle, rgba(139,92,246,0.18) 0%, rgba(139,92,246,0) 70%)', left: '25%', animationDuration: '20s', animationDelay: '5s' }} />
+      </div>
       {/* Top Announcement Bar */}
       <div className="promo-bar">
         <span>🎉 <strong>Volta às Aulas</strong> 7 dias de teste grátis no Plano Sementinha + Migração gratuita da sua planilha ou sistema!</span>
@@ -824,65 +845,180 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modern Footer */}
-      <footer className="footer-v2">
-        <div className="footer-grid">
-          <div className="footer-col">
-            <div style={{ marginBottom: '16px' }}>
-              <img src="/saberio-logo-v3.png" alt="Saberio" className="brand-logo-img-footer" />
-            </div>
-            <p style={{ color: '#94a3b8', fontSize: '13.5px', lineHeight: '1.6', maxWidth: '320px' }}>
-              O software de gestão escolar inteligente, acolhedor e lúdico que aproxima famílias, professores e direção.
-            </p>
-            <div style={{ marginTop: '16px', display: 'flex', gap: '12px' }}>
-              <span style={{ background: '#1e293b', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', color: '#10b981', fontWeight: 800 }}>
-                ● 99.9% Uptime
-              </span>
-              <span style={{ background: '#1e293b', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', color: '#38b6ff', fontWeight: 800 }}>
-                🔒 100% LGPD
-              </span>
-            </div>
-          </div>
-
-          <div className="footer-col">
-            <h5>Módulos</h5>
-            <ul>
-              <li><a href="#modulos">Agenda Baby & Kids</a></li>
-              <li><a href="#modulos">Comunicação com Pais</a></li>
-              <li><a href="#modulos">Financeiro & Pix Auto</a></li>
-              <li><a href="#modulos">Matrículas Online</a></li>
-              <li><a href="#modulos">Diário de Classe BNCC</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h5>Para Escolas</h5>
-            <ul>
-              <li><a href="#para-quem">Educação Infantil</a></li>
-              <li><a href="#para-quem">Berçários</a></li>
-              <li><a href="#para-quem">Ensino Fundamental</a></li>
-              <li><a href="#planos">Planos & Preços</a></li>
-              <li><a href="#calculadora">Calculadora ROI</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h5>Atendimento</h5>
-            <ul>
-              <li><a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer">💬 WhatsApp Suporte</a></li>
-              <li><a href="mailto:contato@saberio.com.br">✉️ contato@saberio.com.br</a></li>
-              <li><span>Seg a Sex das 08h às 19h</span></li>
-              <li><span>Plantão de Matrículas aos sábados</span></li>
-            </ul>
-          </div>
+      {/* Premium & Lúdico Footer V3 */}
+      <footer className="footer-v3">
+        {/* Curved Wave Top Divider */}
+        <div className="footer-wave-divider" aria-hidden="true">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#0f172a">
+            <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" />
+          </svg>
         </div>
 
-        <div className="footer-bottom">
-          <span>© 2026 Saberio Tecnologia Educacional Ltda. Todos os direitos reservados.</span>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <a href="#inicio">Termos de Uso</a>
-            <a href="#inicio">Política de Privacidade</a>
-            <a href="#inicio">Segurança dos Dados</a>
+        <div className="footer-container">
+          {/* Top Interactive Cards (Support & Newsletter) */}
+          <div className="footer-top-cards">
+            {/* VIP WhatsApp Support Card */}
+            <div className="footer-support-card">
+              <div>
+                <div className="support-online-badge">
+                  <span className="online-dot" /> Atendimento Online Agora
+                </div>
+                <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 800, margin: '4px 0 6px' }}>
+                  Dúvidas sobre o sistema ou implantação?
+                </h4>
+                <p style={{ color: '#94a3b8', fontSize: '13px', margin: 0 }}>
+                  Converse diretamente com nossos especialistas em gestão escolar via WhatsApp.
+                </p>
+              </div>
+              <a
+                href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20tirar%20dúvidas%20sobre%20o%20Saberio"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-accent"
+                style={{ padding: '12px 22px', fontSize: '14px', whiteSpace: 'nowrap' }}
+              >
+                <MessageCircle size={16} /> Chamar no WhatsApp
+              </a>
+            </div>
+
+            {/* Educational Newsletter Card */}
+            <div className="footer-newsletter-card">
+              <span style={{ fontSize: '11px', fontWeight: 900, color: '#38b6ff', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                💌 Boletim Pedagógico Saberio
+              </span>
+              <h4 style={{ color: '#ffffff', fontSize: '16px', fontWeight: 800, margin: '4px 0 6px' }}>
+                Receba novidades da BNCC e dicas de gestão
+              </h4>
+              {newsletterSent ? (
+                <div style={{ background: 'rgba(16, 185, 129, 0.2)', border: '1px solid #10b981', color: '#6ee7b7', padding: '10px 14px', borderRadius: '12px', fontSize: '13px', marginTop: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <CheckCircle2 size={16} /> Inscrição realizada com sucesso! Bem-vindo(a).
+                </div>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Seu melhor e-mail institucional..."
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="newsletter-input"
+                  />
+                  <button type="submit" className="newsletter-btn">
+                    Assinar Grátis <ArrowRight size={14} />
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {/* Main Footer Grid */}
+          <div className="footer-main-grid">
+            {/* Brand Column */}
+            <div className="footer-brand-info">
+              <img src="/saberio-logo.png" alt="Saberio" className="brand-logo-img-footer" />
+              <p>
+                O ecossistema inteligente, acolhedor e colorido que simplifica a rotina de diretores, encanta os professores e aproxima as famílias da escola.
+              </p>
+              <div className="footer-trust-pills">
+                <span className="footer-trust-pill">🛡️ 100% LGPD</span>
+                <span className="footer-trust-pill">⭐ Nota 4.9/5</span>
+                <span className="footer-trust-pill">☁️ Backup Diário</span>
+                <span className="footer-trust-pill">⚡ 99.9% Uptime</span>
+              </div>
+            </div>
+
+            {/* Col 1: Soluções */}
+            <div className="footer-col">
+              <h5>Soluções</h5>
+              <ul>
+                <li><a href="#para-quem">👶 Berçário & Baby Kids</a></li>
+                <li><a href="#para-quem">🎨 Educação Infantil</a></li>
+                <li><a href="#para-quem">📚 Ensino Fundamental</a></li>
+                <li><a href="#para-quem">💼 Direção & Mantenedores</a></li>
+                <li><a href="#para-quem">👨‍👩‍👧 Famílias & Alunos</a></li>
+              </ul>
+            </div>
+
+            {/* Col 2: Módulos */}
+            <div className="footer-col">
+              <h5>Módulos</h5>
+              <ul>
+                <li><a href="#modulos">📱 Agenda Digital & App</a></li>
+                <li><a href="#modulos">📝 Matrículas Online</a></li>
+                <li><a href="#modulos">💸 Cobrança Pix & Boleto</a></li>
+                <li><a href="#modulos">📋 Diário de Classe BNCC</a></li>
+                <li><a href="#modulos">🚪 Portaria & Catracas</a></li>
+                <li><a href="#modulos">🥪 Cantina & Nutrição</a></li>
+              </ul>
+            </div>
+
+            {/* Col 3: Ferramentas */}
+            <div className="footer-col">
+              <h5>Recursos</h5>
+              <ul>
+                <li><a href="#calculadora">💡 Calculadora de ROI</a></li>
+                <li><a href="#planos">🏷️ Tabela de Planos</a></li>
+                <li><a href="#duvidas">❓ Perguntas Frequentes</a></li>
+                <li><a href="#inicio" onClick={openDemoModal}>🚀 Agendar Demonstração</a></li>
+                <li><a href="#planos">🌱 Teste 7 Dias Grátis</a></li>
+              </ul>
+            </div>
+
+            {/* Col 4: Contato & Suporte */}
+            <div className="footer-col">
+              <h5>Atendimento</h5>
+              <ul>
+                <li>
+                  <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer">
+                    💬 WhatsApp Oficial
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:contato@saberio.com.br">
+                    ✉️ contato@saberio.com.br
+                  </a>
+                </li>
+                <li style={{ color: '#64748b', fontSize: '12.5px', marginTop: '4px' }}>
+                  🕒 Seg a Sex das 08h às 19h
+                </li>
+                <li style={{ color: '#64748b', fontSize: '12.5px' }}>
+                  🏫 Plantão aos Sábados
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="footer-bottom-bar">
+            <div>
+              <span>© 2026 Saberio Tecnologia Educacional Ltda. CNPJ: 00.000.000/0001-00.</span>
+              <span style={{ display: 'block', marginTop: '4px', color: '#94a3b8' }}>
+                Feito com <span className="heartbeat-icon">❤️</span> para educadores que transformam o futuro.
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <a href="#inicio" style={{ color: '#94a3b8' }}>Termos de Uso</a>
+                <a href="#inicio" style={{ color: '#94a3b8' }}>Privacidade</a>
+                <a href="#inicio" style={{ color: '#94a3b8' }}>Segurança LGPD</a>
+              </div>
+
+              <div className="footer-social-links">
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="footer-social-btn" aria-label="Instagram">
+                  📸
+                </a>
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer" className="footer-social-btn" aria-label="WhatsApp">
+                  💬
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noreferrer" className="footer-social-btn" aria-label="YouTube">
+                  ▶️
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="footer-social-btn" aria-label="LinkedIn">
+                  💼
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
