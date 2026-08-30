@@ -991,7 +991,7 @@ export default function Home() {
           {/* Bottom Bar */}
           <div className="footer-bottom-bar">
             <div>
-              <span>© 2026 Saberio Tecnologia Educacional Ltda. CNPJ: 00.000.000/0001-00.</span>
+              <span>© 2026 Saberio · Vco Consultoria LTDA — CNPJ: 67.168.092/0001-94.</span>
               <span style={{ display: 'block', marginTop: '4px', color: '#94a3b8' }}>
                 Feito com <span className="heartbeat-icon">❤️</span> para educadores que transformam o futuro.
               </span>
