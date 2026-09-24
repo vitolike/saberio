@@ -19,7 +19,9 @@ Os botões de demonstração e teste gratuito preparam contato com a equipe. Os 
 
 ### SEO e interface
 
-Título, descrição, canonical, Open Graph, Twitter e JSON-LD estão em `app/layout.tsx`. `/opengraph-image` gera a imagem de compartilhamento. `/sitemap.xml` inclui a página comercial, e `/robots.txt` bloqueia a API. O retorno do pagamento usa `noindex`. Fontes são servidas localmente por `next/font`, imagens por `next/image` e Anime.js respeita `prefers-reduced-motion`.
+Título, descrição, canonical, Open Graph, Twitter e JSON-LD estão em `app/layout.tsx`. `/opengraph-image` gera a imagem de compartilhamento. `/sitemap.xml` inclui a página comercial, e `/robots.txt` bloqueia a API. O retorno do pagamento usa `noindex`. Fontes são servidas localmente por `next/font` e imagens por `next/image`.
+
+As animações com Anime.js seguem `prefers-reduced-motion` por padrão. O botão “Ativar/Pausar animações” permite escolher para esta página e conserva a escolha na sessão da aba, sem alterar o sistema operacional. Há entrada sequenciada, revelações ao rolar, transições nas abas e movimento da prévia, pausado quando sai da tela.
 
 ```bash
 npm run build

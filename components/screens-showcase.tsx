@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { animate, createScope, stagger } from 'animejs';
+import { useMotionEnabled } from '@/lib/motion-preference';
 import {
   ArrowUpRight,
   BookOpen,
@@ -86,6 +88,29 @@ const screens = [
 export function ScreensShowcase() {
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const root = useRef<HTMLElement>(null);
+  const motionEnabled = useMotionEnabled();
+
+  useEffect(() => {
+    if (!motionEnabled || !root.current) return;
+    const scope = createScope({ root }).add(() => {
+      animate('.screen-stage-box:not([hidden]) .screen-copy-side > *', {
+        y: [28, 0],
+        opacity: [0, 1],
+        delay: stagger(80),
+        duration: 700,
+        ease: 'out(3)',
+      });
+      animate('.screen-stage-box:not([hidden]) .screen-window-frame', {
+        y: [40, 0],
+        scale: [0.95, 1],
+        opacity: [0, 1],
+        duration: 900,
+        ease: 'out(3)',
+      });
+    });
+    return () => scope.revert();
+  }, [active, motionEnabled]);
 
   function navigateTabs(
     event: KeyboardEvent<HTMLButtonElement>,
@@ -105,6 +130,7 @@ export function ScreensShowcase() {
 
   return (
     <section
+      ref={root}
       className="screens-section"
       id="sistema"
       aria-labelledby="screens-title"

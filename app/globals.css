@@ -872,6 +872,27 @@ summary::-webkit-details-marker {
 .mobile-cta {
   display: none;
 }
+.motion-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 26;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #c6d4eb;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d4ed8;
+  box-shadow: 0 4px 20px #15294a12;
+  font-size: 11px;
+  font-weight: 800;
+}
+.motion-toggle:hover {
+  background: #edf3ff;
+}
 .lead-dialog {
   padding: 0;
   border: 1px solid #d9e4f5;
@@ -1114,6 +1135,10 @@ body:has(.lead-dialog[open]) {
   }
 }
 @media (max-width: 640px) {
+  .motion-toggle {
+    right: 12px;
+    bottom: 96px;
+  }
   html {
     scroll-padding-top: 88px;
   }
